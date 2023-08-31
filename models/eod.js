@@ -23,7 +23,3 @@ module.exports  = EOD;
 
 EOD.hasMany(PROY, { foreignKey: 'ID_EOD' });
 PROY.belongsTo(EOD, { foreignKey: 'ID_EOD' });
-
-
-
-

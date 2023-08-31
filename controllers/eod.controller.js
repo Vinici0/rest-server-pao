@@ -1,14 +1,16 @@
-const { EOD } = require("../models/");
+const eodService = require("../services/eod.service");
 
 const getEOD = async (req, res) => {
   try {
-    const eod = await EOD.findAll();
+    const eod = await eodService.getEOD();
     res.json({
+      ok: true,
       eod,
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({
+      ok: false,
       msg: "Hable con el administrador",
     });
   }
@@ -17,24 +19,25 @@ const getEOD = async (req, res) => {
 const getEODById = async (req, res) => {
   const { id } = req.params;
   try {
-    const eod = await EOD.findByPk(id);
+    const eod = await eodService.getEODById(id);
     res.json({
-      eod,
+      eod: eod.eod,
+      ok: true,
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       msg: "Hable con el administrador",
+      ok: false,
     });
   }
 };
 
-const postEOD = async (req, res) => {
+const createEOD = async (req, res) => {
   const { body } = req;
   try {
-    const eod = new EOD(body);
-    await eod.save();
-    res.json(eod);
+    const eod = await eodService.createEOD(body);
+    eod.ok ? res.json(eod) : res.status(400).json(eod);
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -43,9 +46,37 @@ const postEOD = async (req, res) => {
   }
 };
 
+const updateEOD = async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+  try {
+    const eod = await eodService.updateEOD(id, body);
+    eod.ok ? res.json(eod) : res.status(400).json(eod);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      msg: "Hable con el administrador",
+    });
+  }
+};
+
+const deleteEOD = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const eod = await eodService.deleteEOD(id);
+    eod.ok ? res.json(eod) : res.status(400).json(eod);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      msg: "Hable con el administrador",
+    });
+  }
+};
 
 module.exports = {
-    getEOD,
-    getEODById,
-    postEOD,
+  getEOD,
+  getEODById,
+  createEOD,
+  updateEOD,
+  deleteEOD,
 };
