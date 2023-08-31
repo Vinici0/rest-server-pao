@@ -1,8 +1,8 @@
 const Server = require("./server");
-const EOD = require("./eod");
 const ITEM = require("./item");
-const PROY = require("./proy");
+const EOD = require("./eod");
 const PAO = require("./pao");
+const PROY = require("./proy");
 
 module.exports = {
   Server,

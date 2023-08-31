@@ -1,8 +1,9 @@
 const { Sequelize } = require('sequelize');
-const sequelize = require('sequelize');
+const {dbConnection}= require('../database/config');
+const PROY = require('./proy');
 
-const PAO = sequelize.define("PAO", {
-  ID_PAO: {
+const PAO = dbConnection.define("PAO", {
+  ID_POA: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
@@ -37,3 +38,7 @@ const PAO = sequelize.define("PAO", {
 });
 
 module.exports = PAO;
+
+PAO.hasMany(PROY, { foreignKey: 'ID_POA' });
+PROY.belongsTo(PAO, { foreignKey: 'ID_POA' });
+

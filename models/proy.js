@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
-const sequelize = require('sequelize');
+const {dbConnection}= require('../database/config');
 
-const PROY = sequelize.define("PROY", {
+const PROY = dbConnection.define("PROY", {
   ID_PROY: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -18,6 +18,9 @@ const PROY = sequelize.define("PROY", {
   },
   MEDIOS_DE_VERIFICACION: {
     type: Sequelize.STRING,
+  },
+  ID_POA: {
+    type: Sequelize.INTEGER,
   },
 }, {
   timestamps: false,

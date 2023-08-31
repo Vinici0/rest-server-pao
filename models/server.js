@@ -3,6 +3,11 @@ const cors = require("cors");
 const fileUpload = require("express-fileupload");
 
 const  {dbConnection}  = require("../database/config");
+require("./eod");
+require("./pao");
+require("./proy");
+require("./item");
+
 
 class Server {
   constructor() {
@@ -12,7 +17,7 @@ class Server {
     this.paths = {
       auth: "/api/auth",
       buscar: "/api/buscar",
-      categorias: "/api/categorias",
+      eods: "/api/eods",
       productos: "/api/productos",
       usuarios: "/api/usuarios",
       uploads: "/api/uploads",
@@ -59,7 +64,7 @@ class Server {
   }
 
   routes() {
-    // this.app.use( this.paths.auth, require('../routes/auth'));
+    this.app.use( this.paths.eods, require('../routes/eods.routes'));
   }
 
   listen() {
