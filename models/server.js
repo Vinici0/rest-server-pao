@@ -18,9 +18,9 @@ class Server {
       auth: "/api/auth",
       buscar: "/api/buscar",
       eods: "/api/eods",
-      productos: "/api/productos",
-      usuarios: "/api/usuarios",
-      uploads: "/api/uploads",
+      items: "/api/items",
+      proys: "/api/proys",
+      paos: "/api/paos",
     };
 
     // Conectar a base de datos
@@ -65,6 +65,9 @@ class Server {
 
   routes() {
     this.app.use( this.paths.eods, require('../routes/eods.routes'));
+    this.app.use( this.paths.items, require('../routes/items.routes'));
+    this.app.use( this.paths.proys, require('../routes/proys.routes'));
+    this.app.use( this.paths.paos, require('../routes/paos.routes'));
   }
 
   listen() {

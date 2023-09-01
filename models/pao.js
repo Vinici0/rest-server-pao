@@ -26,7 +26,7 @@ const PAO = dbConnection.define("PAO", {
   PROGRAMA_NACIONAL: {
     type: Sequelize.STRING,
   },
-  OBJETIVOS_ESTRATÉGICOS_PEDI: {
+  OBJETIVOS_ESTRATEGICOS_PEDI: {
     type: Sequelize.STRING,
   },
   OBJETIVOS_OPERATIVOS: {
